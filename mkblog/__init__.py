@@ -26,7 +26,7 @@ def main():
                 title = "_".join(sys.argv[2:]).lower()
                 if not ".md" in title:
                     title = title + ".md"
-                today = datetime.datetime.now().date()
+                today = datetime.datetime.now()
                 path = os.path.join(root, "docs")
                 if not os.path.isdir(path):
                     os.mkdir(path)
@@ -47,6 +47,8 @@ def main():
                     with open(path, "w") as f:
                         f.write("---\n")
                         f.write("title: {}\n".format(" ".join(sys.argv[2:])))
+                        f.write("date: {}\n".format(
+                            today.strftime("%Y-%m-%d %H:%M")))
                         f.write("---\n")
                         f.write("\n")
                         f.write("# {}\n".format(" ".join(sys.argv[2:])))
